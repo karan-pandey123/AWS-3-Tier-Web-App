@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>3-Tier AWS Architecture — Live</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header>
+  <span class="eyebrow"><span class="dot-live"></span> Infrastructure Status: Healthy</span>
+  <h1>Three-tier architecture,<br>running on <span>AWS</span>.</h1>
+  <p class="sub">Route 53 → CloudFront → ALB → Auto Scaling Group → RDS Multi-AZ, deployed across 3 availability zones. This page is itself served from the S3 + CloudFront tier you're looking at.</p>
+  <div class="meta-row">
+    <span>REGION: <b>ap-southeast-2</b></span>
+    <span>AZ COUNT: <b>3</b></span>
+    <span>ENGINEER: <b>Karan Pandey</b></span>
+  </div>
+</header>
+
+<div class="pipeline-wrap">
+  <div class="pipeline">
+    <div class="track">
+      <div class="runner"></div>
+      <div class="node" data-desc="Users hit a friendly domain name — Route 53 resolves it to the CloudFront distribution.">
+        <span class="icon">🌐</span><span class="label">Route 53</span><span class="tier">DNS</span>
+      </div>
+      <div class="node" data-desc="Static assets served from edge locations worldwide. Dynamic requests pass through to the ALB.">
+        <span class="icon">🛰️</span><span class="label">CloudFront</span><span class="tier">CDN</span>
+      </div>
+      <div class="node" data-desc="Public subnet, internet-facing. Distributes traffic to healthy EC2 targets across all 3 AZs.">
+        <span class="icon">⚖️</span><span class="label">ALB</span><span class="tier">Public Tier</span>
+      </div>
+      <div class="node" data-desc="Private subnet EC2 instances behind the ALB, scaling 2–4 based on CPU load.">
+        <span class="icon">🖥️</span><span class="label">EC2 / ASG</span><span class="tier">App Tier</span>
+      </div>
+      <div class="node" data-desc="Private subnet, reachable only from the app tier's security group. No public access, ever.">
+        <span class="icon">🗄️</span><span class="label">RDS MySQL</span><span class="tier">Data Tier</span>
+      </div>
+    </div>
+    <div class="detail" id="detail">
+      → Click a node to see what it does in this request flow.
+      <p id="detail-text"></p>
+    </div>
+  </div>
+</div>
+
+<div class="stats">
+  <div class="stat-card">
+    <div class="n">3 AZ</div>
+    <div class="d">Public + private subnets spread across three availability zones for high availability.</div>
+  </div>
+  <div class="stat-card">
+    <div class="n">2–4</div>
+    <div class="d">Auto Scaling Group range — scales on average CPU utilization, target 50%.</div>
+  </div>
+  <div class="stat-card">
+    <div class="n">0 open</div>
+    <div class="d">Direct SSH ports on app servers. Access is via SSM Session Manager only.</div>
+  </div>
+</div>
+
+<footer>
+  <span>Built by Karan Pandey — BTech CSE, Graphic Era University</span>
+  <span>Served via S3 + CloudFront</span>
+</footer>
+
+<script>
+  const nodes = document.querySelectorAll('.node');
+  const detailText = document.getElementById('detail-text');
+  nodes.forEach(node => {
+    node.addEventListener('click', () => {
+      nodes.forEach(n => n.classList.remove('active'));
+      node.classList.add('active');
+      detailText.textContent = node.dataset.desc;
+    });
+  });
+</script>
+
+</body>
+</html>
