@@ -1,6 +1,6 @@
 # AWS 3-Tier Web Application
 
-##1. Project Overview
+## 1. Project Overview
 
 This project demonstrates the deployment of a highly available and scalable 3-Tier Web Application on Amazon Web Services (AWS).
 
