@@ -1,4 +1,4 @@
-AWS 3-Tier Web Application
+# AWS 3-Tier Web Application
 
 1. Project Overview
 
