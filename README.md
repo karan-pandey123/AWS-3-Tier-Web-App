@@ -14,7 +14,7 @@ The infrastructure is deployed inside a custom Amazon VPC with public and privat
 
 Additional AWS services such as Amazon S3, Amazon CloudFront, and Amazon CloudWatch are used for static content delivery, global distribution, monitoring, and alerting.
 
-##2. Architecture
+## 2. Architecture
 
 The overall architecture follows a standard three-tier cloud architecture:
 
@@ -39,7 +39,7 @@ Main AWS Components
 - Amazon CloudFront
 - Amazon CloudWatch
 
-##3. VPC Configuration
+## 3. VPC Configuration
 
 A custom VPC was created to provide an isolated networking environment for the application.
 
@@ -49,7 +49,7 @@ Public-facing resources such as the Application Load Balancer are placed in publ
 
 Route tables are configured to control how traffic moves between the different components of the architecture.
 
-##4. Subnets and Routing
+## 4. Subnets and Routing
 
 Multiple subnets were created to separate the different layers of the application.
 
@@ -59,7 +59,7 @@ Route tables were configured according to the requirements of public and private
 
 The Internet Gateway provides internet connectivity for resources that require public access.
 
-##5. Security Groups
+## 5. Security Groups
 
 Security Groups were configured as virtual firewalls for the AWS resources.
 
@@ -74,7 +74,7 @@ For example:
 
 This approach follows the principle of least-privilege network access.
 
-##6. EC2 and Auto Scaling
+## 6. EC2 and Auto Scaling
 
 EC2 instances are used to host the application.
 
@@ -91,7 +91,7 @@ This improves:
 
 The running EC2 instances were verified through the AWS EC2 console.
 
-#37. Application Load Balancer
+## 7. Application Load Balancer
 
 An Application Load Balancer (ALB) is placed in front of the EC2 instances.
 
@@ -109,7 +109,7 @@ Benefits
 
 The Target Group health status was also verified to ensure that the application instances were responding correctly.
 
-##8. Target Group and Health Checks
+## 8. Target Group and Health Checks
 
 The EC2 instances are registered with the ALB Target Group.
 
@@ -118,7 +118,8 @@ The Target Group continuously performs health checks on the registered instances
 If an instance fails its health check, the Load Balancer stops sending new traffic to that instance.
 
 This ensures that users are routed only to healthy application servers.
-##9. Amazon RDS Database
+
+## 9. Amazon RDS Database
 
 Amazon RDS is used as the managed database layer.
 
@@ -128,7 +129,7 @@ The application communicates with the RDS database through the configured networ
 
 Database connectivity was verified from the application environment.
 
-##10. AWS Systems Manager (SSM)
+## 10. AWS Systems Manager (SSM)
 
 AWS Systems Manager Session Manager was used to securely access the EC2 instances.
 
@@ -140,7 +141,7 @@ MariaDB/MySQL installation and database verification were performed using the SS
 
 This provides a more secure and manageable approach for server administration.
 
-##11. Database Installation and Verification
+## 11. Database Installation and Verification
 
 The database software was installed and configured on the required server environment.
 
@@ -150,7 +151,7 @@ After installation, MySQL/MariaDB was verified using database commands to confir
 
 This step helped validate the connectivity and database configuration of the application environment.
 
-##12. Amazon S3
+## 12. Amazon S3
 
 Amazon S3 was used for storing static objects/content.
 
@@ -160,7 +161,7 @@ The uploaded objects were verified through the S3 bucket interface.
 
 S3 can also be used as an origin for content delivery through CloudFront.
 
-##13. Amazon CloudFront
+## 13. Amazon CloudFront
 
 Amazon CloudFront was configured as a Content Delivery Network (CDN).
 
@@ -170,7 +171,7 @@ The CloudFront distribution was created and verified successfully.
 
 The architecture can therefore serve static content efficiently to users from AWS edge locations.
 
-##14. Amazon CloudWatch
+## 14. Amazon CloudWatch
 
 Amazon CloudWatch was used for monitoring and alerting.
 
@@ -180,7 +181,7 @@ CloudWatch alarms were configured to monitor important application/infrastructur
 
 This helps identify abnormal resource usage and potential infrastructure issues.
 
-##15. Application Flow
+## 15. Application Flow
 
 The complete application request flow is:
 
@@ -207,7 +208,7 @@ The response is returned to the user through the Load Balancer.
 
 For static content, S3 and CloudFront can be used to provide efficient content delivery.
 
-##16. Security Implementation
+## 16. Security Implementation
 
 Security was considered at multiple levels of the architecture.
 
@@ -223,7 +224,7 @@ The project uses:
 
 These configurations reduce unnecessary exposure and provide controlled communication between different application components.
 
-##17. Scalability and Availability
+## 17. Scalability and Availability
 
 The architecture is designed to support scalability and high availability.
 
@@ -235,7 +236,7 @@ Deploying resources across multiple Availability Zones also helps reduce the imp
 
 CloudWatch provides monitoring and alerting to help detect issues.
 
-##18. Technologies and AWS Services Used
+## 18. Technologies and AWS Services Used
 
 AWS Services
 
@@ -257,7 +258,7 @@ Other Technologies
 - Linux
 - AWS CLI / AWS Management Console
 
-##19. Project Outcome
+## 19. Project Outcome
 
 Through this project, a complete cloud-based 3-Tier Web Application architecture was designed and deployed using AWS.
 
@@ -278,7 +279,7 @@ The project demonstrates practical implementation of:
 
 The project provides hands-on experience with designing a scalable, secure, and highly available application infrastructure on AWS.
 
-##20. Conclusion
+## 20. Conclusion
 
 This project demonstrates how multiple AWS services can be integrated to build a production-style cloud architecture.
 
